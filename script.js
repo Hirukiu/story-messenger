@@ -1450,3 +1450,8 @@ async function restoreFileLink() {
     setFileStatus('none');
     restoreFileLink();
 })();
+
+// Version installée : marche hors ligne et se met à jour toute seule (pas en double-cliquant sur index.html)
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    navigator.serviceWorker.register('sw.js').catch(() => { /* hors ligne au premier lancement */ });
+}

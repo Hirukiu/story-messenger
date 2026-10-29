@@ -9,11 +9,14 @@ Ouvre cette adresse : https://hirukiu.github.io/story-messenger/
 
 - Utilise Opera, Google Chrome ou Microsoft Edge (sur ordinateur) : ce sont les
   navigateurs qui permettent l'enregistrement automatique dans un fichier.
-- Les mises à jour arrivent toutes seules : il n'y a jamais rien à télécharger.
-  Si une nouveauté n'apparaît pas, appuie sur Ctrl+F5.
-- Astuce : ajoute l'adresse en favori, ou installe l'application (Chrome/Edge :
-  icône « Installer » au bout de la barre d'adresse) pour avoir une icône sur le bureau.
+- Installe l'application : dans Chrome ou Edge, clique sur l'icône « Installer »
+  au bout de la barre d'adresse (ou menu ⋮ → « Installer Story Messenger »).
+  Tu as alors une icône sur le bureau et dans le menu Démarrer.
+- Une fois ouverte une première fois, elle marche AUSSI SANS INTERNET.
+- Les mises à jour arrivent toutes seules dès que tu es connecté : il n'y a jamais
+  rien à télécharger. Si une nouveauté n'apparaît pas, ferme et rouvre l'application.
 - Tes histoires ne partent pas sur internet : elles restent sur ton ordinateur.
+- L'ancien dossier avec « index.html » ne sert plus (garde seulement « save »).
 
 
 2. LA PREMIÈRE FOIS : CHOISIR TON DOSSIER « SAVE »
