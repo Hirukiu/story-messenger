@@ -1,0 +1,114 @@
+STORY MESSENGER — MODE D'EMPLOI
+===============================
+
+
+1. LANCER L'APPLICATION
+-----------------------
+
+Ouvre cette adresse : https://hirukiu.github.io/story-messenger/
+
+- Utilise Opera, Google Chrome ou Microsoft Edge (sur ordinateur) : ce sont les
+  navigateurs qui permettent l'enregistrement automatique dans un fichier.
+- Les mises à jour arrivent toutes seules : il n'y a jamais rien à télécharger.
+  Si une nouveauté n'apparaît pas, appuie sur Ctrl+F5.
+- Astuce : ajoute l'adresse en favori, ou installe l'application (Chrome/Edge :
+  icône « Installer » au bout de la barre d'adresse) pour avoir une icône sur le bureau.
+- Tes histoires ne partent pas sur internet : elles restent sur ton ordinateur.
+
+
+2. LA PREMIÈRE FOIS : CHOISIR TON DOSSIER « SAVE »
+--------------------------------------------------
+
+  a. Crée un dossier nommé « save » dans tes Documents (ou dans OneDrive).
+  b. Si tu avais déjà une histoire (.json) : mets-la dans ce dossier, puis clique
+     sur « Ouvrir » et choisis-la.
+     Sinon : écris ton histoire, puis clique sur « Enregistrer ».
+  c. Une fenêtre te demande un dossier : choisis ton dossier « save ».
+     L'histoire y est enregistrée sous le nom « <titre de l'histoire>.json ».
+
+Le dossier « save » n'est demandé qu'une seule fois : ensuite, l'application
+s'en souvient (y compris pour « Ouvrir » et pour l'export en texte).
+
+Si tu n'as que tes fichiers Word : clique sur « Ouvrir » et choisis le fichier .docx.
+Le texte est converti en messages, et tu vois un aperçu avant de valider.
+
+
+3. LA SAUVEGARDE : TU N'AS PLUS RIEN À FAIRE
+--------------------------------------------
+
+Chaque modification est enregistrée automatiquement dans ton fichier .json.
+Plus besoin de copier-coller dans Word. Regarde le bouton en haut à droite :
+
+  VERT   « Enregistré »      Tout est sauvegardé dans ton fichier.
+  ORANGE « Reconnecter »     Clique dessus puis sur « Autoriser » : le navigateur
+                             redemande la permission après avoir été fermé.
+                             (Choisis « Autoriser à chaque visite » s'il te le propose.)
+  VIOLET « Enregistrer »     Pas encore enregistrée : clique, l'histoire sera
+                             enregistrée dans le dossier « save ».
+  ROUGE  « Non enregistré »  Le fichier est introuvable (déplacé ou supprimé) :
+                             clique pour l'enregistrer à nouveau.
+
+Même quand le bouton est orange, rien n'est perdu : l'histoire est gardée dans le
+navigateur et sera écrite dans le fichier dès que tu cliques sur « Reconnecter ».
+
+Conseil : place ton dossier « save » dans OneDrive, Google Drive ou Dropbox.
+Il aura ainsi une copie en ligne automatique.
+
+
+4. LES PERSONNAGES DE CHAQUE CHAPITRE
+-------------------------------------
+
+Chaque chapitre a ses propres personnages : seuls eux apparaissent en bas, dans
+le choix de « qui parle ». À gauche, la liste est rangée en deux groupes :
+« Dans ce chapitre » et « Autres personnages ».
+
+  Bouton personnage avec un « – »   Retire le personnage de ce chapitre.
+                                    Il n'est PAS supprimé : il reste dans les
+                                    autres chapitres, et ses messages déjà écrits
+                                    restent affichés.
+  Bouton personnage avec un « + »   Le fait parler dans ce chapitre.
+  Croix « x »                       Supprime le personnage de TOUTE l'histoire,
+                                    avec tous ses messages (une confirmation est
+                                    demandée).
+
+Un nouveau personnage n'apparaît que dans le chapitre en cours.
+Un nouveau chapitre reprend les personnages du chapitre en cours.
+
+
+5. LES IMAGES (MESSAGES ET PHOTOS DE PROFIL)
+--------------------------------------------
+
+Clique sur l'icône image (à gauche de la zone de saisie), ou sur l'appareil photo
+à côté d'un personnage, puis :
+
+  « Choisir sur l'ordinateur »  (le plus simple)
+      L'image est réduite et rangée DANS ton histoire : elle reste visible même
+      si tu déplaces ou supprimes l'original, ou si tu ouvres l'histoire sur un
+      autre ordinateur.
+
+  Coller une adresse internet
+      Fais un clic droit sur l'image puis « Copier l'adresse de l'image ».
+      Attention : l'adresse d'une page (résultat Google, Pinterest…) ne marche
+      pas, il faut celle de l'image elle-même. Les liens Discord expirent au
+      bout de quelques heures : préfère « Choisir sur l'ordinateur ».
+
+
+6. LES AUTRES BOUTONS
+---------------------
+
+  Lecture      Lit le chapitre message par message (clic ou Espace, Échap pour fermer).
+  Exporter     Affiche le chapitre en texte : « Copier », ou « Télécharger (.txt) »
+               qui le range dans le dossier « save ».
+  Ouvrir       Ouvre une histoire (.json), ou importe un texte (.txt) / Word (.docx).
+  Importer du texte (à gauche, sous les chapitres)
+               Colle du texte au format « Nom : message » pour créer plein de
+               messages d'un coup.
+
+
+7. AVEC FIREFOX OU SAFARI
+-------------------------
+
+L'application marche aussi, mais sans enregistrement automatique dans un fichier :
+chaque clic sur « Enregistrer » télécharge une copie de l'histoire (.json) dans
+le dossier Téléchargements (le navigateur ne permet pas de choisir « save »).
+Pense à cliquer régulièrement. Pour la reprendre, utilise « Ouvrir ».

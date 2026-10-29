@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Messenger</title>
+    <script src="vendor/lucide.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Barre du haut -->
+        <header class="topbar">
+            <div class="topbar-group">
+                <button id="sidebarToggle" class="icon-btn sidebar-toggle" title="Menu"
+                    aria-label="Afficher le menu"><i data-lucide="menu"></i></button>
+                <i data-lucide="book-open" class="logo"></i>
+                <input type="text" id="appTitle" class="title-input" aria-label="Titre de l'histoire">
+                <select id="chapterSelect" class="select chapter-select" aria-label="Choisir un chapitre"></select>
+            </div>
+            <div class="topbar-group">
+                <button id="readBtn" class="btn btn-primary" title="Lire le chapitre">
+                    <i data-lucide="play"></i><span class="btn-label">Lecture</span>
+                </button>
+                <button id="exportBtn" class="btn btn-violet" title="Exporter en texte">
+                    <i data-lucide="file-down"></i><span class="btn-label">Exporter</span>
+                </button>
+                <button id="importBtn" class="btn btn-secondary" title="Ouvrir une histoire (.json), un texte (.txt) ou un document Word (.docx)">
+                    <i data-lucide="upload"></i><span class="btn-label">Ouvrir</span>
+                </button>
+                <button id="saveBtn" class="btn btn-save none"></button>
+                <input type="file" id="importInput" accept=".json,application/json,.txt,text/plain,.docx" hidden>
+            </div>
+        </header>
+
+        <div class="layout">
+            <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+            <!-- Barre latérale -->
+            <aside id="sidebar" class="sidebar">
+                <section class="sidebar-section">
+                    <button id="charToggle" class="section-header" aria-expanded="true" aria-controls="charSection">
+                        <span class="section-title"><i data-lucide="users"></i> Personnages</span>
+                        <i data-lucide="chevron-down" class="section-arrow"></i>
+                    </button>
+                    <div id="charSection" class="section-body">
+                        <div id="charList"></div>
+                        <button id="addCharBtn" class="btn-add"><i data-lucide="plus"></i> Personnage</button>
+                    </div>
+                </section>
+
+                <div class="divider"></div>
+
+                <section class="sidebar-section">
+                    <div class="section-label">Chapitres</div>
+                    <div id="chapterList"></div>
+                    <button id="addChapterBtn" class="btn-add"><i data-lucide="plus"></i> Ajouter</button>
+                    <button id="textImportBtn" class="btn-add"><i data-lucide="file-text"></i> Importer du texte</button>
+                </section>
+            </aside>
+
+            <!-- Discussion -->
+            <main class="chat">
+                <div id="msgArea" class="msg-area"></div>
+                <div id="charSelector" class="char-selector"></div>
+                <div id="pendingImage" class="pending-image" hidden></div>
+                <div class="input-bar">
+                    <button id="alignToggle" class="icon-btn" title="Position du message"
+                        aria-label="Position du message"></button>
+                    <button id="imgBtn" class="icon-btn" title="Attacher une image" aria-label="Attacher une image">
+                        <i data-lucide="image"></i>
+                    </button>
+                    <textarea id="msgInput" class="msg-input" rows="1" placeholder="Écrire un message..."
+                        aria-label="Message"></textarea>
+                    <button id="sendBtn" class="send-btn" title="Envoyer" aria-label="Envoyer">
+                        <i data-lucide="send"></i>
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Fenêtre : ajouter une image -->
+    <div id="imgModal" class="modal-overlay" hidden>
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="imgModalTitle">
+            <h3 id="imgModalTitle" class="modal-title">Ajouter une image</h3>
+            <button id="imgFileBtn" class="btn btn-secondary full-width">
+                <i data-lucide="folder-open"></i> Choisir sur l'ordinateur
+            </button>
+            <input type="file" id="imgFile" accept="image/*" hidden>
+            <div class="modal-or">ou</div>
+            <input type="text" id="imgUrlInput" class="full-width" placeholder="Coller l'adresse d'une image (https://…)"
+                aria-label="Adresse de l'image">
+            <div id="imgPreview" class="img-preview"></div>
+            <div class="modal-actions">
+                <button id="imgRemove" class="btn btn-secondary" hidden>Retirer</button>
+                <button id="imgCancel" class="btn btn-secondary">Annuler</button>
+                <button id="imgConfirm" class="btn btn-primary">Ajouter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fenêtre : modifier un message -->
+    <div id="editModal" class="modal-overlay" hidden>
+        <div class="modal-box modal-wide" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+            <h3 id="editModalTitle" class="modal-title">Modifier le message</h3>
+            <label class="field"><span>Personnage</span><select id="editChar" class="select"></select></label>
+            <label class="field"><span>Texte</span><textarea id="editText" rows="6"></textarea></label>
+            <div class="field"><span>Image (facultatif)</span>
+                <div class="edit-image">
+                    <div id="editImagePreview" class="edit-image-preview"></div>
+                    <button id="editImageBtn" class="btn btn-secondary"></button>
+                </div>
+            </div>
+            <label class="field"><span>Position</span>
+                <select id="editAlign" class="select">
+                    <option value="left">Gauche</option>
+                    <option value="right">Droite</option>
+                </select>
+            </label>
+            <div class="modal-actions">
+                <button id="editCancel" class="btn btn-secondary">Annuler</button>
+                <button id="editConfirm" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fenêtre : export texte -->
+    <div id="exportModal" class="modal-overlay" hidden>
+        <div class="modal-box modal-large" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle">
+            <div class="modal-header">
+                <h3 id="exportModalTitle" class="modal-title">Export texte</h3>
+                <button id="exportClose" class="icon-btn-plain" title="Fermer" aria-label="Fermer">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <textarea id="exportText" class="export-text" readonly aria-label="Texte exporté"></textarea>
+            <div class="modal-actions end">
+                <button id="exportDownload" class="btn btn-secondary"><i data-lucide="download"></i> Télécharger (.txt)</button>
+                <button id="exportCopy" class="btn btn-primary"><i data-lucide="copy"></i> Copier</button>
+                <button id="exportCancel" class="btn btn-secondary">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fenêtre : import texte -->
+    <div id="textImportModal" class="modal-overlay" hidden>
+        <div class="modal-box modal-wide" role="dialog" aria-modal="true" aria-labelledby="textImportTitle">
+            <h3 id="textImportTitle" class="modal-title">Importer du texte</h3>
+            <p class="modal-help">
+                Une réplique par ligne : <code>Nom : message</code>. Le texte sans nom devient de la narration,
+                <code>[Image : url]</code> ajoute une image. Le texte du bouton « Exporter » est aussi reconnu.
+            </p>
+            <textarea id="textImportInput" class="full-width import-input" rows="10" aria-label="Texte à importer"
+                placeholder="Paul : Salut !&#10;Marie : Ça va ?&#10;&#10;Le soleil se couchait sur la ville."></textarea>
+            <div class="import-options">
+                <button id="textImportFileBtn" class="btn btn-secondary">
+                    <i data-lucide="file-text"></i> Charger un fichier (.txt, .docx)
+                </button>
+                <input type="file" id="textImportFile" accept=".txt,text/plain,.docx" hidden>
+                <select id="textImportDest" class="select" aria-label="Où importer">
+                    <option value="new">Dans un nouveau chapitre</option>
+                    <option value="current">À la suite du chapitre actuel</option>
+                </select>
+            </div>
+            <div id="textImportPreview" class="import-preview"></div>
+            <div class="modal-actions">
+                <button id="textImportCancel" class="btn btn-secondary">Annuler</button>
+                <button id="textImportConfirm" class="btn btn-primary">Importer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mode lecture -->
+    <div id="readingMode" class="reading-overlay" hidden>
+        <header class="topbar">
+            <span id="readTitle" class="read-title"></span>
+            <button id="readClose" class="btn btn-secondary"><i data-lucide="x"></i> Fermer</button>
+        </header>
+        <div id="readArea" class="read-area" tabindex="-1"></div>
+        <div id="readHint" class="read-hint"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
